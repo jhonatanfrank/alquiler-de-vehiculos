@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="layout::head">
+<meta charset="UTF-8">
+</head>
+<script type="text/javascript"
+	th:src="@{/js/jsweb/TipoVehiculo/frmMantTipoVehiculo.js}"></script>
+<body>
+	<nav th:replace="layout::menu"></nav>
+	<div class="container">
+		<div class="card">
+			<div class="card-header">Mantenimiendo de Tipo de Vehiculos</div>
+			<div class="card-body">
+				<button type="button" class="btn btn-dark" id="btnagregaratipovehiculo">Nuevo
+					Tipo de Vehiculo</button>
+				<hr />
+
+				<table class="table" id="tbltipovehiculo">
+					<thead>
+						<tr>
+							<th scope="col">ID</th>
+							<th scope="col">Clase</th>
+							<th scope="col">Descripción</th>
+							<th scope="col">Actualizar</th>
+							<th scope="col">Eliminar</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="tipovehiculo :${listtipovehiculos}">
+							<td th:text="${tipovehiculo.idtipovehiculo}"></td>
+							<td th:text="${tipovehiculo.clasecategoriavehiculo}"></td>
+							<td th:text="${tipovehiculo.descripcioncategoriavehiculo}"></td>
+							<td>
+								<button type="button" class="btn btn-dark btnactualizartipovehiculo"
+									th:data-idtipovehiculo="${tipovehiculo.idtipovehiculo}"
+									th:data-clasecategoriavehiculo="${tipovehiculo.clasecategoriavehiculo}"
+									th:data-descripcioncategoriavehiculo="${tipovehiculo.descripcioncategoriavehiculo}">
+									Actualizar</button>
+							</td>
+							<td>
+								<button type="button" class="btn btn-danger	btneliminartipovehiculo"
+									th:data-idtipovehiculo="${tipovehiculo.idtipovehiculo}"
+									th:data-clasecategoriavehiculo="${tipovehiculo.clasecategoriavehiculo}">Eliminar</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<!-- Modal para actualizar vehiculo -->
+	<div class="modal fade" id="modaltipovehiculo" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Mantenimiento
+						de Tipos de Vehiculos</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<div class="mb-3">
+						<label for="txtclase" class="form-label">Clase</label><input
+							type="text" class="form-control" id="txtclase">
+					</div>
+					<div class="mb-3">
+						<label for="txtdescripcion" class="form-label">Descripción</label><input
+							type="text" class="form-control" id="txtdescripcion">
+					</div>
+					<input type="hidden" id="hddidtipovehiculo" value="0">
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-bs-dismiss="modal">Cerrar</button>
+					<button type="button" class="btn btn-primary"
+						id="btnregistrartipovehiculo">Guardar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal para actualizar vehiculo -->
+	<div class="modal fade" id="modaleliminartipovehiculo" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Mantenimiento
+						de Tipos de Vehiculos</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<label id="mensajeeliminar"></label> <input type="hidden"
+						id="hddidtipovehiculoeliminar" value="0">
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-bs-dismiss="modal">Cerrar</button>
+					<button type="button" class="btn btn-primary"
+						id="btneliminaridtipovehiculo">Eliminar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	<!-- Modal para actualizar vehiculo 
+	<div class="modal fade" id="modalvehiculoeliminar" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Eliminar Vehiculo</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body"></div>
+				<label id="mensajeeliminar"></label> <input type="hidden"
+					id="hddidvehiculoeliminar" value="0">
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary"
+					data-bs-dismiss="modal">Cerrar</button>
+				<button type="button" class="btn btn-primary"
+					id="btneliminaridvehiculo">Eliminar</button>
+			</div>
+		</div>
+	</div>
+	</div>-->
+</body>
+</html>

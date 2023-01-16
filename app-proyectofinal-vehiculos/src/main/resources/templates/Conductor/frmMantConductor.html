@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="layout::head">
+<meta charset="UTF-8">
+</head>
+<script type="text/javascript" th:src="@{/js/jsweb/Conductor/frmMantConductor.js}"></script>
+<body>
+	<nav th:replace="layout::menu"></nav>
+
+	<div class="container">
+		<div class="card">
+			<div class="card-header">Mantenimiento de Conductores</div>
+			<div class="card-body">
+				<button type="button" class="btn btn-primary" id="btnAgregarConductor">
+					Registrar Conductor</button>
+				<hr />
+				<div id="mensaje"></div>
+				<table class="table" id="tblConductor">
+					<thead>
+						<tr>
+							<th scope="col">idconductor</th>
+							<th scope="col">dni</th>
+							<th scope="col">nombre</th>
+							<th scope="col">Apellido</th>
+							<th scope="col">Direccion</th>
+							<th scope="col">Telefono</th>
+							<th scope="col">Sexo</th>
+							<th scope="col">Distrito</th>
+							<th scope="col">Tipolicencia</th>
+							<th scope="col">Placa vehiculo</th>
+							<th scope="col">Estado</th>
+							<th scope="col">Actualizar</th>
+							<th scope="col">Eliminar</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="conductor :${listconductores}">
+							<th th:text="${conductor.idconductor}"></th>
+							<td th:text="${conductor.dniconductor}"></td>
+							<td th:text="${conductor.nombreconductor}"></td>
+							<td th:text="${conductor.apellidoconductor}"></td>
+							<td th:text="${conductor.direccionconductor}"></td>
+							<td th:text="${conductor.telefonoconductor}"></td>
+							<td th:text="${(conductor.sexoconductor == 'M') ? 'Masculino': 'Femenino' }"></td>
+							<td th:text="${conductor.distritoconductor}"></td>
+							<td th:text="${conductor.claselicencia}"></td>
+							<td th:text="${conductor.placavehiculo}"></td>
+							<td th:text="${(conductor.estadoconductor == 1 ? 'Activo' :  'Inactivo')}"></td>
+							<td>
+								<button type="button" class="btn btn-success btnactualizarconductor"
+									th:data-id="${conductor.idconductor}"
+									th:data-dni="${conductor.dniconductor}"
+									th:data-nombre="${conductor.nombreconductor}"
+									th:data-apellido="${conductor.apellidoconductor}"
+									th:data-direccion="${conductor.direccionconductor}"
+									th:data-telefono="${conductor.telefonoconductor}"
+									th:data-sexo="${conductor.sexoconductor}"
+									th:data-distrito="${conductor.distritoconductor}"
+									th:data-idtipolicencia="${conductor.idtipolicencia}"
+									th:data-idvehiculo="${conductor.idvehiculo}"
+									th:data-estado="${conductor.estadoconductor}"
+									>
+									Actualizar</button>
+							</td>
+							<td>
+								<button type="button" class="btn btn-danger btneliminarconductor"
+									th:data-idconductor="${conductor.idconductor}"
+									th:data-nombre="${conductor.nombreconductor}">Eliminar</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		
+	</div>
+
+	<!-- Modal para registrar y actualizar un alumno -->
+	<div class="modal fade" id="modalConductor" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Mantenimiento
+						de Conductores</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<div class="mb-3">
+						<label for="txtdni" class="form-label">DNI</label> <input
+							type="text" class="form-control" id="txtdni">
+					</div>
+					<div class="mb-3">
+						<label for="txtnombre" class="form-label">Nombre</label> <input
+							type="text" class="form-control" id="txtnombre">
+					</div>
+					<div class="mb-3">
+						<label for="txtapellido" class="form-label">Apellido</label> <input
+							type="text" class="form-control" id="txtapellido">
+					</div>
+					<div class="mb-3">
+						<label for="txtdireccion" class="form-label">Direccion</label> <input
+							type="text" class="form-control" id="txtdireccion">
+					</div>
+					<div class="mb-3">
+						<label for="txttelefono" class="form-label">Telefono</label> <input
+							type="text" class="form-control" id="txttelefono">
+					</div>
+
+					<div class="mb-3">
+						<label for="cbosexo" class="form-label">Sexo</label>
+						<select id="cbosexo" class="form-select">
+							<option value="N" selected>Seleccione</option>
+							<option value="M">Masculino</option>
+							<option value="F" >Femenino</option>
+						</select>
+					</div>
+
+					<div class="mb-3">
+						<label for="txtdistrito" class="form-label">Distrito</label> <input
+							type="text" class="form-control" id="txtdistrito">
+					</div>
+
+					<div class="mb-3">
+						<label for="cbotipolicencia" class="form-label">Tipo licencia</label>
+						<select id="cbotipolicencia" class="form-select">
+							<option value="0" selected>Seleccione</option>
+							<option th:each="tipolicencia : ${listtipolicencia} "
+								th:text="${tipolicencia.claselicencia}"
+								th:value="${tipolicencia.idtipolicencia}"></option>
+						</select>
+					</div>
+
+					<div class="mb-3">
+						<label for="cbotipovehiculo" class="form-label">Tipo Vehiculo</label>
+						<select id="cbotipovehiculo" class="form-select">
+							<option value="0" selected>Seleccione</option>
+							<option th:each="tipovehiculo : ${listvehiculo} "
+								th:text="${tipovehiculo.placavehiculo}"
+								th:value="${tipovehiculo.idvehiculo}"></option>
+						</select>
+					</div>
+
+					<div class="mb-3">
+						<label for="cboestado" class="form-label">Estado(*)</label>
+						<select id="cboestado" class="form-select" required>
+							<option value="-1" selected>Seleccione</option>
+							<option value="1" >Activo</option>
+							<option value="0" >Inactivo</option>
+						</select>
+					</div>
+
+					<input type="hidden" id="hddidconductor" value="0"> 
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-bs-dismiss="modal">Cerrar</button>
+					<button type="button" class="btn btn-primary"
+						id="btnregistrarconductor">Guardar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- Modal para eliminar un alumno -->
+	<div class="modal fade" id="modaleliminarconductor" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Eliminar Alumno</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+				
+					<label id="mensajeeliminar"></label>
+					<input type="hidden" id="hddidconductoreliminar" value="0"> 
+					
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-bs-dismiss="modal">Cerrar</button>
+					<button type="button" class="btn btn-danger"
+						id="btneliminarconductor">Eliminar</button>
+				</div>
+			</div>
+		</div> 
+	</div>
+ 
+</body>
+</html>

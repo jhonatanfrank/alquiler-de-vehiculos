@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="layout::head">
+<meta charset="UTF-8">
+</head>
+<script type="text/javascript"
+	th:src="@{/js/jsweb/Vehiculo/frmMantVehiculo.js}"></script>
+<body>
+	<nav th:replace="layout::menu"></nav>
+	<div class="container">
+		<div class="card">
+			<div class="card-header">Mantenimiendo de Vehiculos</div>
+			<div class="card-body">
+				<button type="button" class="btn btn-dark" id="btnagregaravehiculo">Nuevo
+					Vehiculo</button>
+				<hr />
+
+				<table class="table" id="tblvehiculo">
+					<thead>
+						<tr>
+							<th scope="col">Código</th>
+							<th scope="col">Placa</th>
+							<th scope="col">Partida</th>
+							<th scope="col">Tipo Vehiculo</th>
+							<th scope="col">Actualizar</th>
+							<th scope="col">Eliminar</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="vehiculo :${listvehiculos}">
+							<td th:text="${vehiculo.idvehiculo}"></td>
+							<td th:text="${vehiculo.placavehiculo}"></td>
+							<td th:text="${vehiculo.partidaregistralvehiculo}"></td>
+							<td th:text="${vehiculo.clasecategoriavehiculo}"></td>
+							<td>
+								<button type="button" class="btn btn-dark btnactualizarvehiculo"
+									th:data-idvehiculo="${vehiculo.idvehiculo}"
+									th:data-placavehiculo="${vehiculo.placavehiculo}"
+									th:data-partidaregistralvehiculo="${vehiculo.partidaregistralvehiculo}"
+									th:data-idtipovehiculo="${vehiculo.idtipovehiculo}">
+									Actualizar</button>
+							</td>
+							<td>
+								<button type="button" class="btn btn-danger	btneliminarvehiculo"
+									th:data-idvehiculo="${vehiculo.idvehiculo}"
+									th:data-placavehiculo="${vehiculo.placavehiculo}">Eliminar</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<!-- Modal para actualizar vehiculo -->
+	<div class="modal fade" id="modalvehiculo" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Mantenimiento
+						de Vehiculos</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<div class="mb-3">
+						<label for="txtplaca" class="form-label">Placa</label><input
+							type="text" class="form-control" id="txtplaca">
+					</div>
+					<div class="mb-3">
+						<label for="txtpartida" class="form-label">partida</label><input
+							type="text" class="form-control" id="txtpartida">
+					</div>
+					<div class="mb-3">
+						<label for="cboidtipovehiculo" class="form-label">Tipo de
+							vehiculos</label> <select id="cboidtipovehiculo" class="form-select">
+							<option value="0" selected="selected">Seleccione</option>
+							<option th:each="tipovehiculo :${listtipovehiculos}"
+								th:text="${tipovehiculo.clasecategoriavehiculo}"
+								th:value="${tipovehiculo.idtipovehiculo}"></option>
+						</select>
+					</div>
+					<input type="hidden" id="hddidvehiculo" value="0">
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-bs-dismiss="modal">Cerrar</button>
+					<button type="button" class="btn btn-primary"
+						id="btnregistrarvehiculo">Guardar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal para actualizar vehiculo -->
+	<div class="modal fade" id="modalvehiculoeliminar" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Mantenimiento
+						de Vehiculos</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<label id="mensajeeliminar"></label> <input type="hidden"
+						id="hddidvehiculoeliminar" value="0">
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-bs-dismiss="modal">Cerrar</button>
+					<button type="button" class="btn btn-primary"
+						id="btneliminaridvehiculo">Eliminar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	<!-- Modal para actualizar vehiculo 
+	<div class="modal fade" id="modalvehiculoeliminar" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Eliminar Vehiculo</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body"></div>
+				<label id="mensajeeliminar"></label> <input type="hidden"
+					id="hddidvehiculoeliminar" value="0">
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary"
+					data-bs-dismiss="modal">Cerrar</button>
+				<button type="button" class="btn btn-primary"
+					id="btneliminaridvehiculo">Eliminar</button>
+			</div>
+		</div>
+	</div>
+	</div>-->
+</body>
+</html>

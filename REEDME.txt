@@ -1,0 +1,29 @@
+ALQUILER DE VEHICULOS:
+
+Concepto: Este programa se hizco en el IDE Eclipse, usando JAVA y el Framework SPRING. Es una aplicacion que hace mantenimiento a 4 tablas relacionadas(CRUD).
+
+La cual permite:
+	1.- Registrar
+	2.- Actualizar
+	3.- Editar
+	4.- Eliminar
+	5.- Listar
+
+Pasos para ejecutar:
+	1.- Abrir MySQL Workbench 8.0 CE
+	2.- Ejecutar los script "bd.sql" y "procedimientos.sql"
+	3.- Abrir desde Eclipse la aplicacion/carpeta "app-proyectofinal-vehiculos"
+	4.- Click en File/Open Projects from File System...
+	5.- Le damos click en el boton "Directory..."
+	6.- Buscar la carpeta en donde se encuentra nuestra aplicacion "app-proyectofinal-vehiculos" (tiene)
+	7.- Desplegar el proyecto en el mismo IDE y buscar la carpeta "src/main/resources"
+	8.- Ubicar el archivo "application.properties"
+	9.- Hacer las configuraciones de acuerdo a su ordenador
+	10.- En la linea 3, el "localhost" debe tener el mismo puerto que el "Mysql"
+	11.- En la linea 4 y 5, el usuario y contraseña debe ser de acuerdo a su computadora.
+	12.- Guardamos
+	13.- Seleccionamos el proyecto raiz y click derecho.
+	14.- Click en Run As/Spring Boot App
+	15.- Abrir el navegador de su preferencia
+	16.- Colocar en la URL "http://localhost:8080/TipoVehiculo/frmMantTipoVehiculo"
+	17.- Se podrá visualizar los CRUDS de las 4 Tablas (Vehiculos, Tipo de Vehiculos, Tipo de Licencias y Conductores)

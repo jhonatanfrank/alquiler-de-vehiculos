@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="layout::head">
+<meta charset="UTF-8">
+</head>
+<script type="text/javascript"
+	th:src="@{/js/jsweb/TipoLicencia/frmMantTipoLicencia.js}"></script>
+<body>
+	<nav th:replace="layout::menu"></nav>
+	<div class="container">
+		<div class="card">
+			<div class="card-header">Mantenimiendo de Tipo de Licencias</div>
+			<div class="card-body">
+				<button type="button" class="btn btn-dark" id="btnagregaratipolicencia">Nuevo
+					Tipo de Licencia</button>
+				<hr />
+
+				<table class="table" id="tbltipolicencia">
+					<thead>
+						<tr>
+							<th scope="col">ID</th>
+							<th scope="col">Clase</th>
+							<th scope="col">Categoria</th>
+							<th scope="col">Actualizar</th>
+							<th scope="col">Eliminar</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="tipolicencia :${listtipolicencias}">
+							<td th:text="${tipolicencia.idtipolicencia}"></td>
+							<td th:text="${tipolicencia.claselicencia}"></td>
+							<td th:text="${tipolicencia.categorialicencia}"></td>
+							<td>
+								<button type="button" class="btn btn-dark btnactualizartipolicencia"
+									th:data-idtipolicencia="${tipolicencia.idtipolicencia}"
+									th:data-claselicencia="${tipolicencia.claselicencia}"
+									th:data-categorialicencia="${tipolicencia.categorialicencia}">
+									Actualizar</button>
+							</td>
+							<td>
+								<button type="button" class="btn btn-danger	btneliminartipolicencia"
+									th:data-idtipolicencia="${tipolicencia.idtipolicencia}"
+									th:data-claselicencia="${tipolicencia.claselicencia}">Eliminar</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<!-- Modal para actualizar vehiculo -->
+	<div class="modal fade" id="modaltipolicencia" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Mantenimiento
+						de Tipos de Licencias</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<div class="mb-3">
+						<label for="txtclase" class="form-label">Clase</label><input
+							type="text" class="form-control" id="txtclase">
+					</div>
+					<div class="mb-3">
+						<label for="txtcategoria" class="form-label">Categoria</label><input
+							type="text" class="form-control" id="txtcategoria">
+					</div>
+					<input type="hidden" id="hddidtipolicencia" value="0">
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-bs-dismiss="modal">Cerrar</button>
+					<button type="button" class="btn btn-primary"
+						id="btnregistrartipolicencia">Guardar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal para actualizar vehiculo -->
+	<div class="modal fade" id="modaleliminartipolicencia" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Mantenimiento
+						de Tipos de Licencias</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<label id="mensajeeliminar"></label> <input type="hidden"
+						id="hddidtipolicenciaeliminar" value="0">
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-bs-dismiss="modal">Cerrar</button>
+					<button type="button" class="btn btn-primary"
+						id="btneliminaridtipolicencia">Eliminar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	<!-- Modal para actualizar vehiculo 
+	<div class="modal fade" id="modalvehiculoeliminar" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Eliminar Vehiculo</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body"></div>
+				<label id="mensajeeliminar"></label> <input type="hidden"
+					id="hddidvehiculoeliminar" value="0">
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary"
+					data-bs-dismiss="modal">Cerrar</button>
+				<button type="button" class="btn btn-primary"
+					id="btneliminaridvehiculo">Eliminar</button>
+			</div>
+		</div>
+	</div>
+	</div>-->
+</body>
+</html>
